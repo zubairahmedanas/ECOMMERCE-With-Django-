@@ -10,8 +10,16 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
 
+    def get_absolute_url(self):
+        return reverse('store:product_detail', args=[self.slug])
+
     def __str__(self):
         return self.name
+
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(is_active=True)
 
 
 class Product(models.Model):
@@ -27,6 +35,8 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     author = models.CharField(max_length=225, default='admin')
+    object= models.Manager()
+    products= ProductManager()
 
     class Meta:
         verbose_name_plural = 'Products'
