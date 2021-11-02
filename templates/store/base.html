@@ -30,7 +30,7 @@
                                 <li><a class="dropdown-item" href="{% url "store:all_products" %}">All</a></li>
                                 {% for c in categories %}
                                 <li {% if category.slug == c.slug %}class="selected" {% endif %}>
-                                    <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>
+                                     <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -47,6 +47,9 @@
 
                 </div>
             </div>
+            <script>
+
+            </script>
         </nav>
     </header>
     <div id="content">{% block content %} {% endblock %}</div>
