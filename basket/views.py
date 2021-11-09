@@ -6,7 +6,8 @@ from store.models import Product
 
 
 def basket_summary(request):
-    return render(request, 'store/basket/summary.html')
+    basket = Basket(request)
+    return render(request, 'store/basket/summary.html', {'basket': basket})
 
 
 def basket_add(request):
@@ -15,5 +16,5 @@ def basket_add(request):
         product_id = int(request.POST.get('productid'))
         product = get_object_or_404(Product, id=product_id)
         basket.add(product=product)
-        response=JsonResponse({'test':'data'})
+        response = JsonResponse({'test': 'data'})
         return response
